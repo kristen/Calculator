@@ -18,6 +18,7 @@
 @implementation CalculatorViewController
 
 @synthesize display = _display;
+@synthesize textEntered = _textEntered;
 @synthesize userInTheMiddleOfEnteringANumber = _userInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 
@@ -48,7 +49,7 @@
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userInTheMiddleOfEnteringANumber = NO;
-//    self.textEntered.text = [self.textEntered.text stringByAppendingString:[self.display.text stringByAppendingString:@" "]];
+    self.textEntered.text = [self.textEntered.text stringByAppendingString:[self.display.text stringByAppendingString:@" "]];
 }
 
 
@@ -60,6 +61,28 @@
     NSString *operation = sender.currentTitle;
     double result = [self.brain performOperation:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
-//    self.textEntered.text = [self.textEntered.text stringByAppendingString:[sender.currentTitle stringByAppendingString:@" "]];
+    self.textEntered.text = [self.textEntered.text stringByAppendingString:[sender.currentTitle stringByAppendingString:@" "]];
+}
+
+
+- (IBAction)backspacePressed
+{
+    if (self.userInTheMiddleOfEnteringANumber){
+        self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
+        if ([self.display.text length] == 0) self.userInTheMiddleOfEnteringANumber = NO;
+    }
+}
+
+- (IBAction)clearPressed
+{
+    self.display.text = @"";
+    self.textEntered.text = @"";
+    [self.brain clearOperandStack];
+}
+
+
+- (void)viewDidUnload {
+    [self setTextEntered:nil];
+    [super viewDidUnload];
 }
 @end

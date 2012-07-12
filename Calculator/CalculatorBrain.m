@@ -78,12 +78,8 @@
             result = cos([self popOperandOffStack:stack]);
         } else if ([operation isEqualToString:@"sqrt"]) {
             result = sqrt([self popOperandOffStack:stack]);
-        } else if ([operation isEqualToString:@"Ï€"]) {
+        } else if ([operation isEqualToString:@"π"]) {
             result = M_PI;
-        } else if ([operation isEqualToString:@"e"]){
-            result = M_E;
-        } else if ([operation isEqualToString:@"log"]){
-            result = log([self popOperandOffStack:stack]);
         }
     }
     
