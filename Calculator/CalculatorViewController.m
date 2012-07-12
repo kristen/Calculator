@@ -22,7 +22,7 @@
 
 - (IBAction)digitPressed:(UIButton *)sender 
 {
-    NSString *digit = [sender currentTitle];
+    NSString *digit = sender.currentTitle;
     if (self.userInTheMiddleOfEnteringANumber) {
         if ([digit isEqualToString:@"."]) {
             if ([self.display.text rangeOfString:@"."].location == NSNotFound) {
@@ -37,4 +37,10 @@
     }
 }
 
+- (IBAction)enterPressed {
+}
+
+
+- (IBAction)operationPressed:(UIButton *)sender {
+}
 @end
