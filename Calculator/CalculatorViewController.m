@@ -13,6 +13,7 @@
 @end
 
 @implementation CalculatorViewController
+@synthesize display;
 
 - (void)viewDidLoad
 {
@@ -22,6 +23,7 @@
 
 - (void)viewDidUnload
 {
+    [self setDisplay:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
